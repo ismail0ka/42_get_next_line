@@ -15,6 +15,7 @@
 int	ft_read_file(int fd, char **buffer_p)
 {
 	char	*buffer;
+	char	*join;
 	int	offset;
 
 	while (1)
@@ -45,7 +46,7 @@ char	*get_line(char *s)
 	char	*line;
 
 	i = 0;
-	while (s[i] != '\n' || s[i] != EOF)
+	while (s[i] != '\n' && s[i] != EOF)
 		i++;
 	line = (char *)malloc(i + 1);
 	ft_strlcpy(line, s, i + 1);
@@ -54,7 +55,10 @@ char	*get_line(char *s)
 
 void	to_next_line(char **buffer_p)
 {
-	while (s[i] != '\n' || s[i] != EOF)
+	size_t	i;
+
+	i = 0;
+	while (*buffer[i] != '\n' && *buffer[i])
 		i++;
 	*buffer_p = (*buffer_p) + i;
 }

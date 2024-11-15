@@ -20,9 +20,11 @@ char	*get_next_line(int fd)
 	if (BUFFER_SIZE <= 0 || fd < 0)
 		return (NULL);
 	if (!buffer)
+	{
 		read_status = ft_read_file(fd, &buffer);//get all lines
-	if (read_status == -1)
-		return (NULL);
+		if (read_status == -1)
+			return (NULL);
+	}
 	line = get_line(buffer);//render a line
 	while (buffer)
 		to_next_line(&buffer);//set buffer to next line
