@@ -6,7 +6,7 @@
 /*   By: ikarouat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:45:50 by ikarouat          #+#    #+#             */
-/*   Updated: 2024/11/09 00:36:20 by ikarouat         ###   ########.fr       */
+/*   Updated: 2024/11/15 02:54:18 by ikarouat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*get_next_line(int fd)
 	if (BUFFER_SIZE <= 0 || fd < 0)
 		return (NULL);
 	if (!buffer)
-		read_status = read_file(fd, &buffer);//get all lines
+		read_status = ft_read_file(fd, &buffer);//get all lines
 	if (read_status == -1)
 		return (NULL);
 	line = get_line(buffer);//render a line
