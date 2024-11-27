@@ -6,7 +6,7 @@
 /*   By: ikarouat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:45:50 by ikarouat          #+#    #+#             */
-/*   Updated: 2024/11/15 02:54:18 by ikarouat         ###   ########.fr       */
+/*   Updated: 2024/11/27 02:50:01 by ikarouat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 char	*get_next_line(int fd)
 {
-	static char			*buffer;
-	int					read_status;
-	iline_t	line;
+	static char	*buffer;
+	int		read_status;
+	iline_t		line;
 
 	if (BUFFER_SIZE <= 0 || fd < 0)
 		return (NULL);

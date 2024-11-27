@@ -6,7 +6,7 @@
 /*   By: ikarouat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 01:17:55 by ikarouat          #+#    #+#             */
-/*   Updated: 2024/11/22 01:55:33 by ikarouat         ###   ########.fr       */
+/*   Updated: 2024/11/27 02:49:58 by ikarouat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,16 +136,32 @@ iline_t	ft_get_line(char *s)
 		i++;
 	line.next_line_index = ++i;
 	line.line = (char *)malloc(i + 1);
+	if (!(line.line))
+		line.line = NULL;
 	ft_strlcpy(line.line, s, i + 1);
 	return (line);
 }
 
 void	to_next_line(char **buffer_p, unsigned int next_index)
 {
+	char	*new_buf;
+	size_t	new_len;
 	size_t	i;
+	size_t	start;
 
 	i = 0;
-	while (buffer_p[i] != '\n' || buffer_p[i] != EOF)
+	//Start from new line index alloc and fill new buf
+	//Free old buf
+	new_len = ft_strlen() - next_index;
+	new_buf = ft_calloc(new_len + 1);
+	if (!new_buf)
+		return ;
+	while (*buffer_p[next_index + i])
+	{
+		new_buf[i] = *buffer_p[next_index + i];
 		i++;
-	
+	}
+	free(*buffer_p);
+	*buffer_p = new_buf;
+	return ;
 }
