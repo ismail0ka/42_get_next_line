@@ -15,11 +15,21 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <stdint.h>
+# ifndef BUFFER_SIZE
+# define BUFFER_SIZE 1
+#endif
 
 char	*get_next_line(int fd);
-int		read_file(int fd, char **buffer_p);
-char	*get_line(char *s);
+int		ft_read_file(int fd, char **buffer_p);
+iline_t ft_get_line(char *s);
 size_t	ft_strlcpy(char *dst, char *src, size_t dstsize);
 void	*ft_calloc(size_t count, size_t size);
+typedef struct iline_t
+{
+    char    *line;
+    unsigned int    next_line_index;
+}iline_t;
+
 
 #endif
