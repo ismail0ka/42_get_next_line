@@ -12,8 +12,8 @@
 
 CC= cc
 CFLAGS= -Wall -Wextra -Werror
-NAME= get_next_line
-SRCS= get_next_line.c
+NAME= get_next_line.a
+SRCS= get_next_line.c get_next_line_utils.c
 OBJS= $(SRCS:.c=.o)
 
 $(NAME): $(OBJS)

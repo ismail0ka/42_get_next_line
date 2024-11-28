@@ -25,7 +25,6 @@ char	*get_next_line(int fd)
 	if (read_status == -1)
 		return (NULL);
 	line = ft_get_line(buffer);
-	while (buffer)
-		ft_to_next_line(&buffer, line.next_line_index);
+	buffer = ft_to_next_line(buffer, line.next_line_index);
 	return (line.line);
 }

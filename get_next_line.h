@@ -20,16 +20,14 @@
 # define BUFFER_SIZE 1
 #endif //BUFFER_SIZE
 
-char	*get_next_line(int fd);
-int		ft_read_file(int fd, char **buffer_p);
-iline_t ft_get_line(char *s);
-size_t	ft_strlcpy(char *dst, char *src, size_t dstsize);
-void	*ft_calloc(size_t count, size_t size);
 typedef struct iline_t
 {
     char*line;
     unsigned int    next_line_index;
 }iline_t;
-
+char	*get_next_line(int fd);
+char	*ft_to_next_line(char *buffer, unsigned int next_index);
+int		ft_read_file(int fd, char **buffer_p);
+iline_t ft_get_line(char *s);
 
 #endif //GET_NEXT_LINE_H

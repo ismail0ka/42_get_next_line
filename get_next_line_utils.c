@@ -12,7 +12,27 @@
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *s)
+static void    *ft_memset(void *b, int c, size_t len)
+{
+        unsigned char   *tmp_b;
+
+        if (!b)
+                return (b);
+        tmp_b = b;
+        while (len > 0)
+        {
+                *(tmp_b++) = (unsigned char) c;
+                len--;
+        }
+        return (b);
+}
+
+static void	ft_bzero(void *s, size_t n)
+{
+        ft_memset(s, '\0', n);
+}
+
+static size_t	ft_strlen(const char *s)
 {
 	size_t	i;
 
@@ -22,7 +42,7 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-void	*ft_calloc(size_t count, size_t size)
+static void	*ft_calloc(size_t count, size_t size)
 {
 	void	*heap_arr;
 
@@ -35,7 +55,7 @@ void	*ft_calloc(size_t count, size_t size)
 	return (heap_arr);
 }
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+static size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	size_t	i;
 
@@ -51,7 +71,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	return (ft_strlen(src));
 }
 
-char	*ft_strdup(const char *s1)
+static char	*ft_strdup(const char *s1)
 {
 	size_t	i;
 	char	*new_s;
@@ -73,7 +93,7 @@ char	*ft_strdup(const char *s1)
 	return (new_s);
 }
 
-char	*ft_join_and_free(char *dst, char *src)
+static char	*ft_join_and_free(char *dst, char *src)
 {
 	char	*new_buff;
 	int		i;
@@ -142,26 +162,22 @@ iline_t	ft_get_line(char *s)
 	return (line);
 }
 
-void	to_next_line(char **buffer_p, unsigned int next_index)
+char	*ft_to_next_line(char *buffer, unsigned int next_index)
 {
 	char	*new_buf;
 	size_t	new_len;
 	size_t	i;
-	size_t	start;
 
 	i = 0;
-	//Start from new line index alloc and fill new buf
-	//Free old buf
-	new_len = ft_strlen() - next_index;
-	new_buf = ft_calloc(new_len + 1);
+	new_len = ft_strlen(buffer) - next_index;
+	new_buf = ft_calloc(new_len + 1, sizeof(char));
 	if (!new_buf)
-		return ;
-	while (*buffer_p[next_index + i])
+		return (NULL);
+	while (buffer[next_index + i])
 	{
-		new_buf[i] = *buffer_p[next_index + i];
+		new_buf[i] = buffer[next_index + i];
 		i++;
 	}
-	free(*buffer_p);
-	*buffer_p = new_buf;
-	return ;
+	free(buffer);
+	return new_buf;
 }
