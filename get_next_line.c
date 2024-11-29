@@ -15,7 +15,7 @@
 char	*get_next_line(int fd)
 {
 	static char	*buffer;
-	int		read_status;
+	int			read_status;
 	char		*line;
 
 	if (BUFFER_SIZE <= 0 || fd < 0)
@@ -26,3 +26,17 @@ char	*get_next_line(int fd)
 	line = ft_get_line(&buffer);
 	return (line);
 }
+
+//int main(){
+//    int f_fd = open("test.txt", O_RDWR | O_CREAT);
+//    char   *s;
+//    
+//    while ((s = get_next_line(f_fd)))
+//    {   
+//        if (!s)
+//            break ;
+//        printf("%s",s);
+//    }
+//    printf("(NULL)0");
+//    return 0;
+//}

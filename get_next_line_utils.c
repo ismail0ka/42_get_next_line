@@ -12,24 +12,24 @@
 
 #include "get_next_line.h"
 
-static void    *ft_memset(void *b, int c, size_t len)
+static void	*ft_memset(void *b, int c, size_t len)
 {
-        unsigned char   *tmp_b;
+	unsigned char	*tmp_b;
 
-        if (!b)
-                return (b);
-        tmp_b = b;
-        while (len > 0)
-        {
-                *(tmp_b++) = (unsigned char) c;
-                len--;
-        }
-        return (b);
+	if (!b)
+		return (b);
+	tmp_b = b;
+	while (len > 0)
+	{
+		*(tmp_b++) = (unsigned char)c;
+		len--;
+	}
+	return (b);
 }
 
 static void	ft_bzero(void *s, size_t n)
 {
-        ft_memset(s, '\0', n);
+	ft_memset(s, '\0', n);
 }
 
 static size_t	ft_strlen(const char *s)
@@ -42,24 +42,24 @@ static size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char    *ft_strchr(const char *s, int c)
+char	*ft_strchr(const char *s, int c)
 {
-        unsigned int    i;
-        unsigned int    s_len;
+	unsigned int	i;
+	unsigned int	s_len;
 
-        if (!s)
-                return (NULL);
-        s_len = ft_strlen(s);
-        if ((char)c == '\0')
-                return ((char *)(s + s_len));
-        i = 0;
-        while (i < s_len)
-        {
-                if (s[i] == (char) c)
-                        return ((char *)(s + i));
-                i++;
-        }
-        return (NULL);
+	if (!s)
+		return (NULL);
+	s_len = ft_strlen(s);
+	if ((char)c == '\0')
+		return ((char *)(s + s_len));
+	i = 0;
+	while (i < s_len)
+	{
+		if (s[i] == (char) c)
+			return ((char *)(s + i));
+		i++;
+	}
+	return (NULL);
 }
 
 static void	*ft_calloc(size_t count, size_t size)
@@ -161,7 +161,7 @@ int	ft_read_line(int fd, char **buffer_p)
 		*buffer_p = ft_join_and_free(*buffer_p, buffer);
 		free(buffer);
 	}
-	return bytes_count;
+	return (bytes_count);
 }
 
 char	*ft_get_remainder(char *s, size_t new_line_offset)
@@ -196,7 +196,7 @@ char	*ft_get_line(char **buffer_p)
 	s_remainder = ft_get_remainder(*buffer_p, i);
 	free(*buffer_p);
 	*buffer_p = s_remainder;
-	return (line);	
+	return (line);
 }
 
 char	*ft_to_next_line(char *buffer, unsigned int next_index)
@@ -216,5 +216,5 @@ char	*ft_to_next_line(char *buffer, unsigned int next_index)
 		i++;
 	}
 	free(buffer);
-	return new_buf;
+	return (new_buf);
 }

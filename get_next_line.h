@@ -16,14 +16,12 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <stdint.h>
-# ifndef BUFFER_SIZE
-# define BUFFER_SIZE 1
-#endif //BUFFER_SIZE
 
 char	*get_next_line(int fd);
-int	ft_read_line(int fd, char **buffer_p);
+int		ft_read_line(int fd, char **buffer_p);
 char	*ft_get_line(char **s);
-//char	*ft_to_next_line(char *buffer, unsigned int next_index);
-//iline_t ft_get_line(char *s);
 
+# ifndef BUFFER_SIZE
+#define BUFFER_SIZE 1
+# endif
 #endif //GET_NEXT_LINE_H
