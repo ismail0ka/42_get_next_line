@@ -42,6 +42,26 @@ static size_t	ft_strlen(const char *s)
 	return (i);
 }
 
+char    *ft_strchr(const char *s, int c)
+{
+        unsigned int    i;
+        unsigned int    s_len;
+
+        if (!s)
+                return (NULL);
+        s_len = ft_strlen(s);
+        if ((char)c == '\0')
+                return ((char *)(s + s_len));
+        i = 0;
+        while (i < s_len)
+        {
+                if (s[i] == (char) c)
+                        return ((char *)(s + i));
+                i++;
+        }
+        return (NULL);
+}
+
 static void	*ft_calloc(size_t count, size_t size)
 {
 	void	*heap_arr;
@@ -152,7 +172,10 @@ char	*ft_get_remainder(char *s, size_t new_line_offset)
 	i = 0;
 	new_buf = ft_calloc(ft_strlen(s) - new_line_offset + 1, 1);
 	while (s[new_line_offset + i])
+	{
 		new_buf[i] = s[new_line_offset + i];
+		i++;
+	}
 	return (new_buf);
 }
 
@@ -163,9 +186,10 @@ char	*ft_get_line(char **buffer_p)
 	char	*s_remainder;
 
 	i = 0;
-	while (*buffer_p[i] != '\n')
+	while ((*buffer_p)[i] != '\n')
 		i++;
-	line = (char *)ft_calloc(i + 1);
+	i++;
+	line = (char *)ft_calloc(i + 1, 1);
 	if (!line)
 		return (NULL);
 	ft_strlcpy(line, *buffer_p, i + 1);
