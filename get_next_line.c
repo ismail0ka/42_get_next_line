@@ -16,15 +16,13 @@ char	*get_next_line(int fd)
 {
 	static char	*buffer;
 	int		read_status;
-	iline_t		line;
+	char		*line;
 
 	if (BUFFER_SIZE <= 0 || fd < 0)
 		return (NULL);
-	if (!buffer)
-		read_status = ft_read_file(fd, &buffer);
+	read_status = ft_read_line(fd, &buffer);
 	if (read_status == -1)
 		return (NULL);
-	line = ft_get_line(buffer);
-	buffer = ft_to_next_line(buffer, line.next_line_index);
-	return (line.line);
+	line = ft_get_line(&buffer);
+	return (line);
 }

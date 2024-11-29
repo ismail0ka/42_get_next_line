@@ -20,14 +20,10 @@
 # define BUFFER_SIZE 1
 #endif //BUFFER_SIZE
 
-typedef struct iline_t
-{
-    char*line;
-    unsigned int    next_line_index;
-}iline_t;
 char	*get_next_line(int fd);
-char	*ft_to_next_line(char *buffer, unsigned int next_index);
-int		ft_read_file(int fd, char **buffer_p);
-iline_t ft_get_line(char *s);
+int	ft_read_line(int fd, char **buffer_p);
+char	*ft_get_line(char **s);
+//char	*ft_to_next_line(char *buffer, unsigned int next_index);
+//iline_t ft_get_line(char *s);
 
 #endif //GET_NEXT_LINE_H
