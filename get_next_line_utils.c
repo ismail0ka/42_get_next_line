@@ -153,10 +153,14 @@ int	ft_read_line(int fd, char **buffer_p)
 		if (!buffer)
 			return (-1);
 		bytes_count = read(fd, buffer, BUFFER_SIZE);
-		if (bytes_count <= 0)
+		if (bytes_count < 0)
 		{
 			free(buffer);
 			return (-1);
+		}else if (bytes_count == 0)
+		{
+			free(buffer);
+			return (0);
 		}
 		*buffer_p = ft_join_and_free(*buffer_p, buffer);
 		free(buffer);
@@ -182,39 +186,27 @@ char	*ft_get_remainder(char *s, size_t new_line_offset)
 char	*ft_get_line(char **buffer_p)
 {
 	size_t	i;
+	short	has_rem;
 	char	*line;
 	char	*s_remainder;
 
 	i = 0;
-	while ((*buffer_p)[i] != '\n')
+	has_rem = 0;
+	while ((*buffer_p)[i] != '\n'  && (*buffer_p)[i] != '\0')
 		i++;
+
+	if ((*buffer_p)[i] == '\n')
+		has_rem = 1;
 	i++;
 	line = (char *)ft_calloc(i + 1, 1);
 	if (!line)
 		return (NULL);
 	ft_strlcpy(line, *buffer_p, i + 1);
-	s_remainder = ft_get_remainder(*buffer_p, i);
+	if (has_rem)
+		s_remainder = ft_get_remainder(*buffer_p, i);
+	else
+		s_remainder = 0;
 	free(*buffer_p);
 	*buffer_p = s_remainder;
 	return (line);
-}
-
-char	*ft_to_next_line(char *buffer, unsigned int next_index)
-{
-	char	*new_buf;
-	size_t	new_len;
-	size_t	i;
-
-	i = 0;
-	new_len = ft_strlen(buffer) - next_index;
-	new_buf = ft_calloc(new_len + 1, sizeof(char));
-	if (!new_buf)
-		return (NULL);
-	while (buffer[next_index + i])
-	{
-		new_buf[i] = buffer[next_index + i];
-		i++;
-	}
-	free(buffer);
-	return (new_buf);
 }

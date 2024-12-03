@@ -21,7 +21,7 @@ char	*get_next_line(int fd)
 	if (BUFFER_SIZE <= 0 || fd < 0)
 		return (NULL);
 	read_status = ft_read_line(fd, &buffer);
-	if (read_status == -1)
+	if (read_status == -1 || !buffer)
 		return (NULL);
 	line = ft_get_line(&buffer);
 	return (line);
